@@ -1,1 +1,37 @@
-
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>فاحص الروابط</title>
+<style>
+body{font-family:Tahoma;background:#0a0e1a;color:#fff;padding:20px;text-align:center}
+h1{color:#38bdf8}
+input{width:90%;padding:15px;font-size:16px;border-radius:10px;border:2px solid #4a90e2;background:#1a1f2e;color:#fff}
+button{padding:15px 40px;font-size:16px;background:#4a90e2;color:#fff;border:none;border-radius:10px;cursor:pointer;margin-top:15px}
+#result{margin-top:20px;padding:15px;border-radius:10px;font-size:18px}
+.safe{background:#064e3b;color:#86efac}
+.danger{background:#7f1d1d;color:#fecaca}
+</style>
+</head>
+<body>
+<h1>فاحص الروابط</h1>
+<input id="url" placeholder="الصق الرابط هنا">
+<br>
+<button onclick="check()">فحص</button>
+<div id="result"></div>
+<script>
+function check(){
+  var u=document.getElementById('url').value.trim();
+  var r=document.getElementById('result');
+  if(!u){r.className='';r.textContent='اكتب رابطاً أولاً';return}
+  var danger=['bit.ly','tinyurl.com','.tk','.ml','.xyz','.click'];
+  var found=false;
+  for(var i=0;i<danger.length;i++){
+    if(u.toLowerCase().indexOf(danger[i])!==-1){found=true;break}
+  }
+  if(found){r.className='danger';r.textContent='تحذير: يحتوي مؤشرات مشبوهة'}
+  else{r.className='safe';r.textContent='آمن: لا مؤشرات خطرة واضحة'}
+}
+</script>
+</body>
+</html>
